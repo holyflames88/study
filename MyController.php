@@ -1,36 +1,33 @@
+
 <?php
 
 namespace console\controllers;
 
-use app\models\Person;
+use Yii;
+use console\models\Person;
 use yii\console\Controller;
 use yii\db\Command;
 use yii\helpers\ArrayHelper;
 
 class MyController extends Controller
 {
-    public function actionIndex()
+ 
+   public function actionIndex()
     {
-/*
-     $rows = ArrayHelper::getColumn($models, 'attributes');
-*/
-      $rows = [];
 
-       foreach ($models as $model) {
-        if (!$model->validate()) {
-            break;
-       }
-
-      $rows[] = [
-      'name' => $model->name,
-      'age' => $model->age,
-      ]; 
+$z = 0;
+while($z < 3) {
+####
+     $i = 0;
+     while($i<4) {
+     Yii::$app->db->createCommand()->batchInsert(Person::tableName(), ['name','age','male'], [['MyNewTest', 30, 'male'],['AAABBBCCC', 40, 'female'],])->execute();
+     echo "You SQL Request #".$i." successfuly! \n";
+     ++$i;
      }
-
-
-     $personModel = new Person;
-
-     Yii::$app->db->createCommand()->batchInsert(Person::tableName(), ['name','age'], $rows)->execute();
+ echo "------------------------------------------------------------ \n";
+ ++$z;
+####
+}
 
     }
 }
