@@ -11,9 +11,9 @@ class MyController extends Controller
 {
     public function actionIndex()
     {
-
+/*
      $rows = ArrayHelper::getColumn($models, 'attributes');
-
+*/
       $rows = [];
 
        foreach ($models as $model) {
